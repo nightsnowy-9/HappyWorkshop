@@ -312,6 +312,18 @@ public class SQL {
         }
     }
 
+    public static boolean deleteFromMarket(int uid, int window) {
+        try (Connection conn = DriverManager.getConnection(JDBC_URL, JDBC_USER, JDBC_PASSWORD)) {
+            try (PreparedStatement ps = conn.prepareStatement(
+                    "DELETE FROM market where uid = " + uid + " and mwindow = " + window)) {
+                int n = ps.executeUpdate();
+                return (n == 1);
+            }
+        } catch (SQLException e) {
+            return false;
+        }
+    }
+
     public static boolean If_Item_Property(String iname) {  //查询待查物品的种类（true：道具 false：原料）
         boolean itype = false;
         int type = -1;
@@ -659,10 +671,11 @@ public class SQL {
 //        for (stock stock : mt) {
 //            System.out.println(stock.getgoodsname() + stock.getgoodsnum());
 //        }
-        Date t = new Date();
+//        Date t = new Date();
 //        setWork(1,1,1,1,t);
-        System.out.println(t);
-        Date c = new Date(t.getTime() + 30 * 60 * 1000);
-        System.out.println(c);
+//        System.out.println(t);
+//        Date c = new Date(t.getTime() + 30 * 60 * 1000);
+//        System.out.println(c);
+        deleteFromMarket(11, 1);
     }
 }
