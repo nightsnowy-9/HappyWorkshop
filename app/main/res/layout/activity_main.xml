@@ -1,0 +1,107 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="wrap_content"
+    android:layout_height="match_parent"
+    android:background="@drawable/background1"
+    android:orientation="vertical"
+    tools:context=".MainActivity">
+
+    <TextView
+        android:id="@+id/textView3"
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:layout_gravity="center_horizontal"
+
+        android:layout_weight="10"
+        android:text="开心工坊小游戏"
+        android:textColor="@color/white"
+        android:textSize="50px" />
+
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="80dp">
+
+        <ImageView
+            android:id="@+id/imageView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_toLeftOf="@id/editTextTextPersonName"
+            app:srcCompat="@drawable/login" />
+
+        <EditText
+            android:id="@+id/editTextTextPersonName"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:textColor="@color/white"
+            android:layout_marginTop="27dp"
+            android:layout_marginEnd="43dp"
+            android:ems="10"
+            android:hint="请输入手机号"
+            android:inputType="textPersonName" />
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="80dp">
+
+        <ImageView
+            android:id="@+id/imageView2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_toLeftOf="@id/editTextTextPersonName2"
+            app:srcCompat="@drawable/serect" />
+        <!--            android:layout_toLeftOf="@id/editTextTextPassword2"-->
+
+        <EditText
+            android:id="@+id/editTextTextPersonName2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:textColor="@color/white"
+            android:layout_marginTop="27dp"
+            android:layout_marginEnd="43dp"
+            android:ems="10"
+            android:hint="请输入密码"
+            android:inputType="textPassword" />
+        <!--        <EditText-->
+        <!--            android:id="@+id/editTextTextPassword2"-->
+        <!--            android:layout_width="wrap_content"-->
+        <!--            android:layout_height="wrap_content"-->
+        <!--            android:layout_marginTop="27dp"-->
+        <!--            android:layout_marginEnd="43dp"-->
+        <!--            android:ems="10"-->
+        <!--            android:hint="请输入密码"-->
+        <!--            android:inputType="textPassword" />-->
+    </RelativeLayout>
+
+
+    <Button
+            android:id="@+id/button2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+            android:text="登录" />
+
+    <Button
+        android:id="@+id/button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:text="注册" />
+    <TextView
+        android:id="@+id/t3"
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:layout_gravity="center_horizontal"
+
+        android:layout_weight="10"
+        android:text=""
+        android:textColor="@color/black"
+        android:textSize="70px" />
+
+
+</LinearLayout>
