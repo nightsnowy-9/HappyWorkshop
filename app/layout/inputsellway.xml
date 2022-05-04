@@ -1,0 +1,19 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical" >
+
+
+    <EditText
+        android:id="@+id/input_sellprice"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="出售单价" />
+
+    <EditText
+        android:id="@+id/input_sellamount"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="出售数量" />
+
+</LinearLayout>

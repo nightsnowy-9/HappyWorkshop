@@ -1,0 +1,39 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:orientation="vertical">
+    <ImageView
+        android:id="@+id/fruitImage"
+        android:layout_width="45dp"
+        android:layout_height="45dp"
+        android:layout_gravity="center_vertical"
+        android:layout_margin="5dp"/>
+
+    <TextView
+        android:id="@+id/fruitName"
+        android:layout_width="55dp"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:gravity="center"
+        android:textColor="@color/white"
+        android:text="TextView" />
+
+    <TextView
+        android:id="@+id/fruitPrice"
+        android:layout_width="75dp"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:textColor="@color/white"
+        android:textSize="10dp"
+        android:text="TextView" />
+
+    <TextView
+        android:id="@+id/fruitAmount"
+        android:layout_width="75dp"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:textSize="10dp"
+        android:textColor="@color/white"
+        android:text="TextView" />
+
+</LinearLayout>
