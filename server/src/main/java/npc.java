@@ -66,7 +66,7 @@ public class npc {
         int mid = mar2[r.nextInt(totalnum)].getmarketid();//生成随机数 获取对应的订单id
         market mar = SQL.getOneMarket(mid);//用订单号查市场的某一条
         int mprice = mar.getprice();//商品价格
-        int wantnum = min(mar.getgoodsnum(), r.nextInt(5));//欲购买量
+        int wantnum = min(mar.getgoodsnum(), (r.nextInt(10)+1)*SQL.getItemValue(mar.getgoodsname())/mprice);//欲购买量
         int sumprice = mprice * wantnum;
         if (mar.getuserid() > 3) {
             //修改卖家金币

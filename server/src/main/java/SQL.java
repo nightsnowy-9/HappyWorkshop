@@ -98,6 +98,20 @@ public class SQL {
         }
     }
 
+    public static int getItemValue(String itemName) {
+        try (Connection conn = DriverManager.getConnection(JDBC_URL, JDBC_USER, JDBC_PASSWORD)) {
+            try (Statement stmt = conn.createStatement()) {
+                try (ResultSet rs = stmt.executeQuery("SELECT ivalue FROM item where itemname=" + addQuotes(itemName))) {
+                    if (rs.next()) {
+                        return rs.getInt(1);
+                    } else return 0;
+                }
+            }
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
     public static stock[] getMaterials(int fid) {
         List<stock> mt = new ArrayList<>();
         try (Connection conn = DriverManager.getConnection(JDBC_URL, JDBC_USER, JDBC_PASSWORD)) {
