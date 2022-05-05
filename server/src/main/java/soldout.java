@@ -71,6 +71,9 @@ public class soldout {
             case "11":
                 s=checkend(a[0], a[2]);
                 break;//11.結束加工 用户名#11#窗口号
+            case "12":
+                s=takeoff(a[0], a[2]);
+                break;//12.下架 用户名#12#窗口号
             default:
                 System.out.println("error");
         }
@@ -401,7 +404,7 @@ public class soldout {
         s[0] = id;
         s[1] = "10";
         int k = SQL.getUid(id);//给用户名返回用户编号
-        if (SQL.getOneMarketWindow(k,Integer.parseInt(windownum))) s[2] = "false";
+        if (SQL.getOneMarketWindow(k,Integer.parseInt(windownum)) != null) s[2] = "false";
         else {
             int nownum = SQL.Find_Store_Stock(k, goodsname);
             int wantsellnum = Integer.parseInt(goodsnum);
@@ -424,6 +427,38 @@ public class soldout {
                 //			 }
                 s[2] = "true";
             }
+        }
+        return (arrtostr(s, 3));
+    }
+
+    public static String takeoff(String id, String windownum)//用户名、窗口号
+    {
+        //给用户名、窗口号查订单物品数
+        //给用户名、物品名查下架前物品数
+        //计算好现在的仓库数 给用户名 物品名 物品数 改仓库表
+        //市场表减 给用户名、窗口号
+        String[] s = new String[3];
+        s[0] = id;
+        s[1] = "12";
+        int k = SQL.getUid(id);//给用户名返回用户编号
+        int windowid = Integer.parseInt(windownum);//获取窗口号
+        market mar = SQL.getOneMarketWindow(k,windowid);//根据用户名和窗口号查询当前物品
+        if (mar==null) s[2] = "false";//若为空 下架失败
+        else {
+            int num = SQL.Find_Store_Stock(k, mar.getgoodsname());//查仓库表
+            //改卖家仓库
+            while (true) {
+                boolean flag;
+                flag = SQL.If_Modify_Store_Successful(k, mar.getgoodsname(), num + mar.getgoodsnum());//给卖家id、下架物品名、下架后仓库数量修改卖家仓库
+                if (flag) break;
+            }
+            //改市场表 给订单号删除对应物品
+            while (true) {
+                boolean flag;
+                flag = SQL.deleteFromMarket(mar.getmarketid());//给卖家id、下架物品名、下架后仓库数量修改卖家仓库
+                if (flag) break;
+            }
+            s[2] = "true";
         }
         return (arrtostr(s, 3));
     }

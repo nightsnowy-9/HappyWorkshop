@@ -238,13 +238,20 @@ public class SQL {
         }
     }
 
-    public static boolean getOneMarketWindow(int uid, int window) {
+    public static market getOneMarketWindow(int uid, int window) {
         try (Connection conn = DriverManager.getConnection(JDBC_URL, JDBC_USER, JDBC_PASSWORD)) {
             try (Statement stmt = conn.createStatement()) {
                 try (ResultSet rs = stmt.executeQuery("SELECT * FROM market where uid = " + uid + " and mwindow = " + window)) {
                     if (rs.next()) {
-                        return true;
-                    } else return false;
+                        market x = new market();
+                        x.setmarketid(rs.getInt(1));
+                        x.setuserid(rs.getInt(2));
+                        x.setgoodsname(getItemName(rs.getInt(3)));
+                        x.setgoodsnum(rs.getInt(4));
+                        x.setprice(rs.getInt(5));
+                        x.setwindowid(rs.getInt(6));
+                        return x;
+                    } else return null;
                 }
             }
         } catch (SQLException e) {
@@ -326,10 +333,10 @@ public class SQL {
         }
     }
 
-    public static boolean deleteFromMarket(int uid, int window) {
+    public static boolean deleteFromMarket(int mid) {
         try (Connection conn = DriverManager.getConnection(JDBC_URL, JDBC_USER, JDBC_PASSWORD)) {
             try (PreparedStatement ps = conn.prepareStatement(
-                    "DELETE FROM market where uid = " + uid + " and mwindow = " + window)) {
+                    "DELETE FROM market where mid = " + mid)) {
                 int n = ps.executeUpdate();
                 return (n == 1);
             }
@@ -690,6 +697,5 @@ public class SQL {
 //        System.out.println(t);
 //        Date c = new Date(t.getTime() + 30 * 60 * 1000);
 //        System.out.println(c);
-        deleteFromMarket(11, 1);
     }
 }
